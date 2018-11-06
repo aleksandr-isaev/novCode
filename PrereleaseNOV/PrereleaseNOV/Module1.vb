@@ -1,5 +1,5 @@
 ﻿Module Module1
-
+    ' Test for GIT
     Public Structure recording
         Public cowID As Integer
         Public day As Integer
