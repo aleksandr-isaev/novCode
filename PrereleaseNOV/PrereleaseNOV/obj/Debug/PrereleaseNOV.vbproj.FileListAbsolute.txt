@@ -1,0 +1,11 @@
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\bin\Debug\PrereleaseNOV.exe.config
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\bin\Debug\PrereleaseNOV.exe
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\bin\Debug\PrereleaseNOV.pdb
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\bin\Debug\PrereleaseNOV.xml
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\obj\Debug\PrereleaseNOV.vbprojResolveAssemblyReference.cache
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\obj\Debug\PrereleaseNOV.Resources.resources
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\obj\Debug\PrereleaseNOV.vbproj.GenerateResource.Cache
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\obj\Debug\PrereleaseNOV.vbproj.CoreCompileInputs.cache
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\obj\Debug\PrereleaseNOV.exe
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\obj\Debug\PrereleaseNOV.xml
+C:\Users\Aleksandr Isaev\Desktop\School\A Level\Computer Science Programming\PrereleaseNOV\PrereleaseNOV\obj\Debug\PrereleaseNOV.pdb
