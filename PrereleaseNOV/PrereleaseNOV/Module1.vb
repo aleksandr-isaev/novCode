@@ -156,7 +156,11 @@
             yearData(x, currentWeek) = total
             Console.WriteLine("Cow " & herd(x) & " average = " & Average(herd, milkings, NumCows, x))
         Next
-
+        For x = 0 To NumCows
+            For y = 0 To 13
+                milkings(x, y) = 0
+            Next
+        Next
         Return yearData
 
     End Function
@@ -233,6 +237,7 @@
     Function TakeRecording(ByVal cows() As Integer, ByVal milkings(,) As Single) As recording
         Dim dayCheck As Integer
         Dim cowCheck As Integer
+        Dim newVal As Single
         Console.WriteLine("Please Enter the cow ID")
         TakeRecording.cowID = Console.ReadLine
         For x = 0 To cows.Length
@@ -251,6 +256,16 @@
         Next
         Console.WriteLine("Please Enter the yield")
         TakeRecording.yield = Console.ReadLine
+        newVal = (((TakeRecording.yield * 10) \ 1) / 10)
+        Do While TakeRecording.yield < 0
+            Console.WriteLine("Please enter a yield greater than or equal to 0. Please try again.")
+            TakeRecording.yield = Console.ReadLine
+        Loop
+        Do While newVal <> TakeRecording.yield
+            Console.WriteLine("Please enter a yield to one decimal place")
+            TakeRecording.yield = Console.ReadLine
+        Loop
+
         Return TakeRecording
 
     End Function
