@@ -18,6 +18,9 @@
         Dim count As Integer = -1
         Dim temp(,) As Single
         Dim temp2(,) As Integer
+        Dim best As Integer = 0
+        Dim bestCow As Integer
+        Dim bestAr(,) As Single
 
         Console.WriteLine("Do you want to run the practice program? 1 for yes and 0 for no")
         If Console.ReadLine Then
@@ -55,6 +58,7 @@
                     outputWeeklyData(cows, herdData)
 
                 Case "c"
+                    bestAr = herdData
                     Console.WriteLine()
                     Console.WriteLine("WEEKLY STATISTICS SO FAR THIS WEEK")
                     Console.WriteLine()
@@ -63,15 +67,27 @@
                     Console.WriteLine("Top cow this week: " & cows(TopCow(herdData, herdSize)))
                     Console.WriteLine()
                     For x = 0 To herdSize
+                        For y = 0 To herdSize
+                            If Average(cows, bestAr, herdSize, y) > best Then
+                                best = Average(cows, bestAr, herdSize, y)
+                                bestCow = cows(y)
+                            End If
+                        Next
+                        For z = 0 To herdSize
+                            If bestCow = cows(z) Then
+                                bestAr(z,z) = -1000
+                            End if                        
+                        Next
                         total += Average(cows, herdData, herdSize, x)
-                        Console.WriteLine("Cow " & cows(x) & " average = " & Average(cows, herdData, herdSize, x))
+                        Console.WriteLine("Cow " & bestCow & " average = " & best)
+                        best = 0
                     Next
                     Console.WriteLine()
                     Console.WriteLine("Weekly total so far " & WeeklyTotal(herdData, herdSize))
                     Console.WriteLine()
                     Console.WriteLine("Average so far this week " & total / herdSize + 1)
                     Console.WriteLine()
-
+                    
 
                 Case "d"
                     yearlyRecords = EndWeek(cows, herdData, herdSize, yearlyRecords)
