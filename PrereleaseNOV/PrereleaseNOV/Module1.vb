@@ -50,8 +50,6 @@
                             Exit Select
                         End If
                     Next
-
-
                     herdData = UpdateYield(cows, herdData, record1)
                 Case "b"
                     Console.WriteLine("Weekly yield table so far this week")
@@ -140,10 +138,12 @@
         Dim check As Boolean = False
         Do
             currentWeek += 1
-            If yearData(0, currentWeek) = 0 And NumCows > 1 Then
-                If yearData(1, currentWeek) = 0 Then
+            If milkings(0, currentWeek) = 0 And NumCows > 1 Then
+                If milkings(1, currentWeek) = 0 Then
                     check = True
                 End If
+            Else
+                check = True
             End If
 
         Loop Until check = True
@@ -348,8 +348,14 @@
             If milkingData(0, x) = 0 Then
                 counter += 1
             End If
-            If milkingData(1, x) = 0 Then
-                counter += 1
+            If cows.Length > 1 Then
+                If milkingData(1, x) = 0 Then
+                    counter += 1
+                End If
+            Else
+                If milkingData(0, x) = 0 Then
+                    counter += 1
+                End If
             End If
             If counter = 2 Then
                 Exit For
