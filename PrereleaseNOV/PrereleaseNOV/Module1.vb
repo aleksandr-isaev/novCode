@@ -83,18 +83,18 @@
                             End if                        
                         Next
                         total += Average(cows, herdData, herdSize, x)
-                        Console.WriteLine("Cow " & bestCow & " average = " & best)
+                        Console.WriteLine("Cow " & bestCow & " average = " & Math.Round(best))
                         best = 0
                     Next
                     Console.WriteLine()
-                    Console.WriteLine("Weekly total so far " & WeeklyTotal(herdData, herdSize))
+                    Console.WriteLine("Weekly total so far " & Math.Round(WeeklyTotal(herdData, herdSize)))
                     Console.WriteLine()
-                    Console.WriteLine("Average so far this week " & total / herdSize + 1)
+                    Console.WriteLine("Average so far this week " & Math.Round(total / herdSize + 1))
                     Console.WriteLine()
                     
 
                 Case "d"
-                    yearlyRecords = EndWeek(cows, herdData, herdSize, yearlyRecords)
+                    yearlyRecords = (EndWeek(cows, herdData, herdSize, yearlyRecords))
                 Case "e"
                     outputYearlyData(cows, yearlyRecords)
                 Case "f"
@@ -162,7 +162,7 @@
             Next
 
             yearData(x, currentWeek) = total
-            Console.WriteLine("Cow " & herd(x) & " average = " & Average(herd, milkings, NumCows, x))
+            Console.WriteLine("Cow " & herd(x) & " average = " & Math.Round(Average(herd, milkings, NumCows, x)))
         Next
         For x = 0 To NumCows
             For y = 0 To 13
