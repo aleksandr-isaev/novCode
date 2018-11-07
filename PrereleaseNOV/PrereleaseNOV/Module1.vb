@@ -28,12 +28,14 @@
             herdData = loadHerdData(herdData)
             yearlyRecords = loadYearData(yearlyRecords)
             herdSize = 7
+            ReDim bestAr(herdSize, 14)
         Else
             Console.WriteLine("Input herd size")
             herdSize = Console.ReadLine() - 1
             ReDim cows(herdSize)
             ReDim herdData(herdSize, 14)
             ReDim yearlyRecords(herdSize, 52)
+            ReDim bestAr(herdSize, 14)
             cows = inputCowIds(herdSize)
         End If
 
@@ -56,7 +58,11 @@
                     outputWeeklyData(cows, herdData)
 
                 Case "c"
-                    bestAr = herdData
+                    For x = 0 To herdSize
+                        For y = 0 To 13
+                            bestAr(x, y) = herdData(x, y)
+                        Next
+                    Next
                     Console.WriteLine()
                     Console.WriteLine("WEEKLY STATISTICS SO FAR THIS WEEK")
                     Console.WriteLine()
@@ -100,6 +106,7 @@
                     herdSize += 1
                     temp = herdData
                     ReDim herdData(herdSize, 14)
+                    ReDim bestAr(herdSize, 14)
                     For x = 0 To herdSize - 1
                         For y = 0 To 13
                             herdData(x, y) = temp(x, y)
