@@ -14,7 +14,7 @@
         Dim yearlyRecords(,) As Integer
         Dim record1 As recording
         Dim total As Single
-        Dim dead(0) As Integer
+        Dim dead As Integer
         Dim count As Integer = -1
         Dim temp(,) As Single
         Dim temp2(,) As Integer
@@ -44,14 +44,8 @@
             choice = Console.ReadLine
             Select Case LCase(choice)
                 Case "a"
-                    displayCows(cows, dead)
+                    displayCows(cows)
                     record1 = TakeRecording(cows, herdData)
-                    For x = 0 To count
-                        If record1.cowID = dead(count) Then
-                            Console.WriteLine("Sorry but that cow is dead")
-                            Exit Select
-                        End If
-                    Next
                     herdData = UpdateYield(cows, herdData, record1)
                 Case "b"
                     Console.WriteLine("Weekly yield table so far this week")
@@ -98,12 +92,38 @@
                 Case "e"
                     outputYearlyData(cows, yearlyRecords)
                 Case "f"
-                    displayCows(cows, dead)
-                    count = count + 1
-                    ReDim dead(count)
-                    dead(count) = KillCow(cows)
+                    displayCows(cows)
+                    Console.WriteLine("Enter cow you want to kill")
+                    dead = Console.ReadLine()
+                    yearlyRecords = KillCow(cows, yearlyRecords, dead)
+                    For x = 0 To cows.Length - 1
+                        If dead = cows(x) Then
+                            For z = 0 To 13
+                                If x = cows.Length - 1 Then
+                                    Exit For
+                                End If
+                                If x = cows.Length - 2 Then
+                                    herdData(x + 1, z) = 0
+                                Else
+                                    herdData(x, z) = herdData(x + 1, z)
+                                End If
+                            Next
+                        End If
+                    Next
+                    For x = 0 To cows.Length - 1
+                        If dead = cows(x) Then
+                            If x = cows.Length - 2 Then
+                                cows(x + 1) = 0
+                                Exit For
+                            Else
+                                cows(x) = cows(x + 1)
+                            End If
+                        End If
+                    Next
+                    herdSize = herdSize - 1
+
                 Case "g"
-                    cows = AddCow(cows, herdSize)
+                            cows = AddCow(cows, herdSize)
                     herdSize += 1
                     temp = herdData
                     ReDim herdData(herdSize, 14)
@@ -308,15 +328,10 @@
             End Select
         Loop
     End Function
-    Sub displayCows(ByVal cows() As Integer, ByVal rip() As Integer)
+    Sub displayCows(ByVal cows() As Integer)
         For x = 0 To cows.Length - 1
-            For y = 0 To rip.Length - 1
-                If cows(x) = rip(y) Then
-                    x = x + 1
-                End If
-            Next
             Console.Write(cows(x) & " ")
-            Next
+        Next
     End Sub
     Sub menu()
         Console.WriteLine("Select from the following options")
@@ -426,11 +441,22 @@
         Next
         Return newCowIds
     End Function
-    Function KillCow(ByVal cows() As Integer)
-        Dim death As Integer
+    Function KillCow(ByVal cows() As Integer, ByVal milkings(,) As Integer, ByVal death As Integer)
         Dim rand As Integer
-        Console.WriteLine("Which cow do you want to kill?")
-        death = Console.ReadLine()
+        For x = 0 To cows.Length - 1
+            If death = cows(x) Then
+                For z = 0 To 51
+                    If x = cows.Length - 1 Then
+                        Exit For
+                    End If
+                    If x = cows.Length - 2 Then
+                        milkings(x + 1, z) = 0
+                    Else
+                        milkings(x, z) = milkings(x + 1, z)
+                    End If
+                Next
+            End If
+        Next
         Randomize()
         rand = (Rnd() * 3 + 1)
         Console.WriteLine()
@@ -449,7 +475,7 @@
                 Console.WriteLine("Cow " & death & " has been sent to a place, far away from here")
         End Select
         Console.WriteLine()
-        Return death
+        Return milkings
     End Function
     Function AddCow(ByVal cows() As Integer, ByVal cowNum As Integer)
         Dim newCows(cowNum + 1) As Integer
