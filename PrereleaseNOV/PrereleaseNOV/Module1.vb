@@ -98,6 +98,7 @@
                 Case "e"
                     outputYearlyData(cows, yearlyRecords)
                 Case "f"
+                    displayCows(cows, dead)
                     count = count + 1
                     ReDim dead(count)
                     dead(count) = KillCow(cows)
