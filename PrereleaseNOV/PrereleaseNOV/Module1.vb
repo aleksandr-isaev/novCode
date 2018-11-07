@@ -413,8 +413,27 @@
     End Function
     Function KillCow(ByVal cows() As Integer)
         Dim death As Integer
+        Dim rand As Integer
         Console.WriteLine("Which cow do you want to kill?")
         death = Console.ReadLine()
+        Randomize()
+        rand = (Rnd() * 3 + 1)
+        Console.WriteLine()
+        Console.WriteLine("((___))
+[ x x ]
+ \   /
+ (' ')
+  (U)")
+        Console.WriteLine()
+        Select Case rand
+            Case 1
+                Console.WriteLine("Cow " & death & " has been shot behind the barn")
+            Case 2
+                Console.WriteLine("Cow " & death & " has been turned into a medium-rare Ribeye")
+            Case 3
+                Console.WriteLine("Cow " & death & " has been sent to a place, far away from here")
+        End Select
+        Console.WriteLine()
         Return death
     End Function
     Function AddCow(ByVal cows() As Integer, ByVal cowNum As Integer)
