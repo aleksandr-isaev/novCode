@@ -18,6 +18,7 @@
         Dim count As Integer = -1
         Dim temp(,) As Single
         Dim temp2(,) As Integer
+        Dim temp3() As Integer
         Dim best As Integer = 0
         Dim bestCow As Integer
         Dim bestAr(,) As Single
@@ -29,6 +30,7 @@
             yearlyRecords = loadYearData(yearlyRecords)
             herdSize = 7
             ReDim bestAr(herdSize, 14)
+            ReDim temp3(herdSize)
         Else
             Console.WriteLine("Input herd size")
             herdSize = Console.ReadLine() - 1
@@ -37,6 +39,7 @@
             ReDim yearlyRecords(herdSize, 52)
             ReDim bestAr(herdSize, 14)
             cows = inputCowIds(herdSize)
+            ReDim temp3(herdSize)
         End If
 
         Do
@@ -73,8 +76,8 @@
                         Next
                         For z = 0 To herdSize
                             If bestCow = cows(z) Then
-                                bestAr(z,z) = -1000
-                            End if                        
+                                bestAr(z, z) = -1000
+                            End If
                         Next
                         total += Average(cows, herdData, herdSize, x)
                         Console.WriteLine("Cow " & bestCow & " average = " & Math.Round(best))
@@ -85,7 +88,7 @@
                     Console.WriteLine()
                     Console.WriteLine("Average so far this week " & Math.Round(total / herdSize + 1))
                     Console.WriteLine()
-                    
+
 
                 Case "d"
                     yearlyRecords = (EndWeek(cows, herdData, herdSize, yearlyRecords))
@@ -97,7 +100,15 @@
                     dead = Console.ReadLine()
                     yearlyRecords = KillCow(cows, yearlyRecords, dead)
                     For x = 0 To cows.Length - 1
+                        If x = cows.Length - 1 And cows(x) = dead Then
+                            For y = 0 To 13
+                                herdData(x, y) = 0
+                            Next
+                        End If
                         If dead = cows(x) Then
+                            If x = cows.Length - 1 Then
+                                Exit For
+                            End If
                             For z = 0 To 13
                                 If x = cows.Length - 1 Then
                                     Exit For
@@ -111,7 +122,15 @@
                         End If
                     Next
                     For x = 0 To cows.Length - 1
+                        If x = cows.Length - 1 And cows(x) = dead Then
+                            For y = 0 To herdSize
+                                cows(x) = 0
+                            Next
+                        End If
                         If dead = cows(x) Then
+                            If x = cows.Length - 1 Then
+                                Exit For
+                            End If
                             If x = cows.Length - 2 Then
                                 cows(x + 1) = 0
                                 Exit For
@@ -120,10 +139,17 @@
                             End If
                         End If
                     Next
+                    For x = 0 To herdSize
+                        temp3(x) = cows(x)
+                    Next
                     herdSize = herdSize - 1
+                    ReDim cows(herdSize)
+                    For x = 0 To herdSize
+                        cows(x) = temp3(x)
+                    Next
 
                 Case "g"
-                            cows = AddCow(cows, herdSize)
+                    cows = AddCow(cows, herdSize)
                     herdSize += 1
                     temp = herdData
                     ReDim herdData(herdSize, 14)
@@ -268,7 +294,7 @@
         Dim newVal As Single
         Console.WriteLine("Please Enter the cow ID")
         TakeRecording.cowID = Console.ReadLine
-        For x = 0 To cows.Length
+        For x = 0 To cows.Length - 1
             If TakeRecording.cowID = cows(x) Then
                 cowCheck = x
                 Exit For
@@ -444,6 +470,14 @@
     Function KillCow(ByVal cows() As Integer, ByVal milkings(,) As Integer, ByVal death As Integer)
         Dim rand As Integer
         For x = 0 To cows.Length - 1
+            If x = cows.Length - 1 And cows(x) = death Then
+                For y = 0 To 51
+                    milkings(x, y) = 0
+                Next
+            End If
+            If x = cows.Length - 1 Then
+                Exit For
+            End If
             If death = cows(x) Then
                 For z = 0 To 51
                     If x = cows.Length - 1 Then
@@ -460,7 +494,8 @@
         Randomize()
         rand = (Rnd() * 3 + 1)
         Console.WriteLine()
-        Console.WriteLine("((___))
+        Console.WriteLine(" 
+((___))
 [ x x ]
  \   /
  (' ')
