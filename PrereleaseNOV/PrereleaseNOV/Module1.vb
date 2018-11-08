@@ -289,7 +289,6 @@
         Return milkings
     End Function
     Function TakeRecording(ByVal cows() As Integer, ByVal milkings(,) As Single) As recording
-        Dim dayCheck As Integer
         Dim cowCheck As Integer
         Dim newVal As Single
         Console.WriteLine("Please Enter the cow ID")
