@@ -372,26 +372,30 @@
     End Sub
     Sub outputYearlyData(ByVal cows() As Integer, ByVal milkingData(,) As Integer)
         Dim counter As Integer = 0
-        Dim sortAr(cows.Length - 1) As Integer
-        Dim milkSortAr(cows.Length - 1, 52)
+        Dim cowsYear(cows.Length - 1) As Integer
+        Dim sortAr(cowsYear.Length - 1) As Integer
+        Dim milkSortAr(cowsYear.Length - 1, 52)
         Console.WriteLine()
         Console.WriteLine("   YEARLY WEEKLY TOTAL DATA")
         Console.Write("Cow ")
         For x = 0 To cows.Length - 1
-            sortAr(x) = cows(x)
+            cowsYear(x) = cows(x)
         Next
-        System.Array.Sort(cows)
-        For x = 0 To cows.Length - 1
-            For y = 0 To cows.Length - 1
-                If sortAr(x) = cows(y) Then
+        For x = 0 To cowsYear.Length - 1
+            sortAr(x) = cowsYear(x)
+        Next
+        System.Array.Sort(cowsYear)
+        For x = 0 To cowsYear.Length - 1
+            For y = 0 To cowsYear.Length - 1
+                If sortAr(x) = cowsYear(y) Then
                     For z = 0 To 51
                         milkSortAr(y, z) = milkingData(x, z)
                     Next
                 End If
             Next
         Next
-        For x = 0 To cows.Length - 1
-            Console.Write(cows(x) & " ")
+        For x = 0 To cowsYear.Length - 1
+            Console.Write(cowsYear(x) & " ")
         Next
         Console.WriteLine()
 
@@ -402,7 +406,7 @@
                 Console.Write(" " & x + 1 & " ")
             End If
 
-            For f = 0 To cows.Length - 1
+            For f = 0 To cowsYear.Length - 1
                 Console.Write(milkSortAr(f, x) & " ")
                 For z = 0 To 2 - Len(CStr(milkSortAr(f, x)))
                     Console.Write(" ")
@@ -412,7 +416,7 @@
             If milkSortAr(0, x) = 0 Then
                 counter += 1
             End If
-            If cows.Length > 1 Then
+            If cowsYear.Length > 1 Then
                 If milkSortAr(1, x) = 0 Then
                     counter += 1
                 End If
