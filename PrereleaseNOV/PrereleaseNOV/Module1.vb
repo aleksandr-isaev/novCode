@@ -1,5 +1,5 @@
 ﻿Module Module1
-
+    ' Test
     Public Structure recording
         Public cowID As Integer
         Public day As Integer
