@@ -1,8 +1,4 @@
 ﻿Module Module1
-    ' Test
-    ' ben test
-    ' teesss
-    ' testes
     Public Structure recording
         Public cowID As Integer
         Public day As Integer
